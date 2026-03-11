@@ -1,33 +1,35 @@
 <template>
     <div class="page-wrapper">
-
+        
         <!-- Heartbeat glow background -->
         <div class="heartbeat-glow"></div>
         <div class="grid-overlay"></div>
-
+        
         <div class="content">
             <img class="logo" src="/assets/img/logo-cropped.png" />
-
+            
             <div class="badge">BIENTÔT DISPONIBLE</div>
-
+            
             <h1 class="title">La pêche,<br><span class="highlight">simplifiée.</span></h1>
-
+            
             <p class="subtitle">
                 CarnaKit propose des kits de pêche prêts à l'emploi, sélectionnés par des professionnels.<br>
                 Choisissez votre cible — <strong>Bar, Sandre, Carpe, etc.</strong> — et recevez tout le nécessaire.
             </p>
-
+            
             <ul class="features">
                 <li><span class="dot"></span>Leurres</li>
                 <li><span class="dot"></span>Bobines de fil</li>
                 <li><span class="dot"></span>Matériel divers supplémentaire</li>
                 <li><span class="dot"></span>Un guide papier pour utiliser le kit</li>
             </ul>
-
+            
             <img src="/assets/img/kit-bar-du-bord.png" class="kit-img" alt="Kit Bar du bord" />
-
+            
             <ComingSoonEmail />
+            
         </div>
+        <u class="text-gray-200 lg:absolute bottom-8 mt-12 lg:mt-0 right-8 font-light text-sm">contact: carnakitfrance@gmail.com</u>
     </div>
 </template>
 
@@ -50,13 +52,15 @@ onMounted(async () => {
 <style scoped>
 .page-wrapper {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     background: #0d0f14;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    overflow-y: auto;
     padding: 3rem 1.5rem;
     box-sizing: border-box;
 }
