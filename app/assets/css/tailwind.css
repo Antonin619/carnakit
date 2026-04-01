@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-sea-25 text-ink-900 antialiased;
+  }
+}
+
+@layer components {
+  .page-backdrop {
+    background: linear-gradient(180deg, #f8fcff 0%, #eef7ff 42%, #ffffff 100%);
+  }
+
+  .background-wash {
+    background:
+      radial-gradient(circle at top left, rgba(155, 216, 255, 0.34), transparent 34%),
+      radial-gradient(circle at 85% 12%, rgba(210, 236, 255, 0.68), transparent 22%),
+      radial-gradient(circle at 50% 100%, rgba(176, 223, 255, 0.18), transparent 28%);
+  }
+
+  .display-title {
+    font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  .brand-badge {
+    @apply rounded-full border border-sea-200/80 bg-white/85 px-4 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-sea-700 shadow-sea-sm;
+  }
+
+  .section-kicker {
+    @apply text-[0.78rem] font-bold uppercase tracking-[0.18em] text-sea-700;
+  }
+
+  .glass-panel {
+    @apply rounded-[2rem] border border-sea-200/70 bg-white/90 backdrop-blur-sm shadow-sea-lg;
+  }
+
+  .summary-card {
+    @apply rounded-[1.4rem] border border-sea-200/70 bg-white/90 p-5 shadow-sea-sm;
+  }
+
+  .soft-chip {
+    @apply rounded-full border border-sea-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-sea-800 shadow-sea-sm;
+  }
+
+  .detail-item {
+    @apply flex items-center gap-3 rounded-2xl border border-sea-200/60 bg-white/80 px-4 py-3 text-base leading-7 text-slate-600;
+  }
+
+  .detail-item::before {
+    content: "";
+    @apply h-2 w-2 flex-none rounded-full bg-sky-400 ring-4 ring-sky-100;
+  }
+
+  .usage-pill {
+    @apply rounded-full border border-sea-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-sea-800 shadow-sea-sm;
+  }
+
+  .primary-button {
+    @apply w-full rounded-full bg-gradient-to-r from-sea-500 to-sea-400 px-5 py-4 text-base font-semibold text-white shadow-sea-button transition hover:from-sea-600 hover:to-sea-500;
+  }
+}

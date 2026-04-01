@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     brevoApiKey: process.env.BREVO_API_KEY,
     brevoListId: process.env.BREVO_LIST_ID
   },
-  app: {
+	app: {
 		head: {
 			meta: [
 				{ name: `viewport`, content: `width=device-width, initial-scale=1` },
@@ -14,5 +14,9 @@ export default defineNuxtConfig({
 			title: `CarnaKit France`,
 		},
 	},
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss'],
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.ts'
+  }
 })
