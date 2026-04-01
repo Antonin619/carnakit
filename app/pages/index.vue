@@ -50,40 +50,58 @@
           </div>
 
           <div class="glass-panel max-w-xl p-5 sm:p-6">
-            <div class="grid gap-4 sm:grid-cols-2">
-              <div>
-                <p class="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-sea-700/80">
-                  Prix
-                </p>
-                <strong class="mt-1 block text-[clamp(2rem,5vw,3rem)] leading-none text-ink-950">
-                  {{ product.price }}
-                </strong>
-              </div>
-
-              <div>
-                <p class="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-sea-700/80">
-                  Stock
-                </p>
-                <strong class="mt-1 block text-lg text-ink-950">
-                  {{ product.stock }}
-                </strong>
-                <span class="mt-1 block text-sm text-slate-500">
-                  {{ product.stockNote }}
-                </span>
-              </div>
-            </div>
-
             <button
-              class="primary-button mt-4 cursor-not-allowed"
+              class="rounded-full border border-sea-200/80 bg-sea-50 px-4 py-2 text-sm font-semibold text-sea-700 shadow-sea-sm"
               type="button"
-              aria-disabled="true"
+              disabled
             >
-              Acheter le kit
+              Bientôt disponible
             </button>
 
-            <p class="mt-3 text-center text-sm text-slate-500">
-              Bouton de démonstration
+            <p class="mt-4 text-lg font-medium text-ink-950">
+              Tenez-moi au courant de sa sortie !
             </p>
+
+            <form
+              class="mt-4"
+              @submit.prevent="subscribe"
+            >
+              <div class="flex flex-col gap-3 sm:flex-row">
+                <input
+                  v-model="email"
+                  type="email"
+                  placeholder="Votre e-mail"
+                  required
+                  class="w-full rounded-full border border-sea-200/80 bg-white px-4 py-3 text-base text-ink-950 outline-none transition focus:border-sea-400 focus:ring-4 focus:ring-sea-100"
+                />
+
+                <button
+                  class="primary-button shrink-0 sm:w-auto sm:px-6"
+                  type="submit"
+                  :disabled="pending"
+                >
+                  {{ pending ? "Envoi..." : "Être prévenu" }}
+                </button>
+              </div>
+
+              <p class="mt-3 text-sm text-slate-500">
+                Alertes de sortie du kit uniquement.
+              </p>
+
+              <p
+                v-if="success"
+                class="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"
+              >
+                Merci ! Vous serez prévenu de sa sortie.
+              </p>
+
+              <p
+                v-else-if="errorMessage"
+                class="mt-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+              >
+                {{ errorMessage }}
+              </p>
+            </form>
           </div>
         </div>
       </section>
@@ -187,11 +205,10 @@ type ContentSection = {
   usages: string[]
 }
 
-const product = {
-  price: "49,90 €",
-  stock: "En stock",
-  stockNote: "12 kits disponibles"
-}
+const email = ref("")
+const success = ref(false)
+const pending = ref(false)
+const errorMessage = ref("")
 
 const heroChips = [
   "9 leurres",
@@ -296,9 +313,29 @@ const contentSections: ContentSection[] = [
   }
 ]
 
+const subscribe = async () => {
+  pending.value = true
+  errorMessage.value = ""
+  success.value = false
+
+  try {
+    await $fetch("/api/subscribe", {
+      method: "POST",
+      body: { email: email.value }
+    })
+
+    success.value = true
+    email.value = ""
+  } catch {
+    errorMessage.value = "Impossible d'ajouter votre e-mail pour le moment."
+  } finally {
+    pending.value = false
+  }
+}
+
 useSeoMeta({
   title: "Kit Bar du Bord | CarnaKit France",
   description:
-    "Page produit du Kit Bar du Bord avec visuel du kit, prix, stock, contenu détaillé et guide papier avec QR codes vidéo."
+    "Page produit du Kit Bar du Bord avec visuel du kit, contenu détaillé et formulaire d'alerte e-mail relié à Brevo."
 })
 </script>
