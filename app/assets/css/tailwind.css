@@ -39,7 +39,7 @@
   }
 
   .glass-panel {
-    @apply rounded-[2rem] border border-sea-200/70 bg-white/90 backdrop-blur-sm shadow-sea-lg;
+    @apply rounded-[2rem] border border-sea-200/70 bg-white/95 shadow-sea-md;
   }
 
   .summary-card {
@@ -65,5 +65,10 @@
 
   .primary-button {
     @apply w-full rounded-full bg-gradient-to-r from-sea-500 to-sea-400 px-5 py-4 text-base font-semibold text-white shadow-sea-button transition hover:from-sea-600 hover:to-sea-500;
+  }
+
+  .content-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 920px;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="page-backdrop relative min-h-screen overflow-hidden text-ink-900">
-    <div class="background-wash pointer-events-none fixed inset-0"></div>
+    <div class="background-wash pointer-events-none absolute inset-0"></div>
 
     <main class="relative z-10 mx-auto w-full max-w-[1220px] px-4 pb-20 pt-6 sm:px-6 lg:px-8">
       <header class="mb-20 md:mb-8 md:justify-start flex justify-center">
@@ -8,6 +8,9 @@
           class="w-36 object-contain md:w-40"
           src="/assets/img/logo-cropped.png"
           alt="CarnaKit"
+          width="1198"
+          height="582"
+          decoding="async"
         />
 
       </header>
@@ -22,8 +25,8 @@
 
           <p class="max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
             Tout le nécessaire pour pêcher le bar en port, en digue ou en bord
-            de mer, avec des leurres complémentaires, les accessoires utiles et
-            un guide papier relié à des vidéos tutoriels.
+            de mer, avec des <strong>leurres complémentaires</strong>, les accessoires utiles et
+            un <strong>guide papier</strong> relié à des <strong>vidéos tutoriels</strong>.
           </p>
 
         </div>
@@ -34,6 +37,10 @@
               class="h-full w-full object-contain"
               src="/assets/img/visuels/kit-bardubord.jpg"
               alt="Visuel du kit Bar du Bord"
+              width="1536"
+              height="1024"
+              fetchpriority="high"
+              decoding="async"
             />
           </div>
         </div>
@@ -137,7 +144,7 @@
       <section
         v-for="(section, index) in contentSections"
         :key="section.title"
-        class="my-6 grid items-center gap-6 lg:grid-cols-12"
+        class="content-section my-6 grid items-center gap-6 lg:grid-cols-12"
       >
         <div
           :class="index % 2 === 1 ? 'lg:order-2 lg:col-span-7' : 'lg:col-span-7'"
@@ -147,6 +154,10 @@
               class="h-full w-full object-contain"
               :src="section.image"
               :alt="section.alt"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
